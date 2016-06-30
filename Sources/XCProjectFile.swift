@@ -114,20 +114,21 @@ public class XCProjectFile {
     var ps: [String: Path] = [:]
 
     for file in current.fileRefs {
+        let path = (file.path ?? file.name)!
       switch file.sourceTree {
       case .group:
         switch current.sourceTree {
         case .absolute:
-          ps[file.id] = .absolute(prefix + "/" + file.path!)
+          ps[file.id] = .absolute(prefix + "/" + path)
         case .group:
-          ps[file.id] = .relativeTo(.SourceRoot, prefix + "/" + file.path!)
+          ps[file.id] = .relativeTo(.SourceRoot, prefix + "/" + path)
         case .relativeTo(let sourceTreeFolder):
-          ps[file.id] = .relativeTo(sourceTreeFolder, prefix + "/" + file.path!)
+          ps[file.id] = .relativeTo(sourceTreeFolder, prefix + "/" + path)
         }
       case .absolute:
-        ps[file.id] = .absolute(file.path!)
+        ps[file.id] = .absolute(path)
       case let .relativeTo(sourceTreeFolder):
-        ps[file.id] = .relativeTo(sourceTreeFolder, file.path!)
+        ps[file.id] = .relativeTo(sourceTreeFolder, path)
       }
     }
 
