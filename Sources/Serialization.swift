@@ -22,13 +22,13 @@ extension XCProjectFile {
     let serializer = Serializer(projectName: name, projectFile: self)
     let plformat = format ?? self.format
 
-    if plformat == PropertyListSerialization.PropertyListFormat.openStepFormat {
+    if plformat == PropertyListSerialization.PropertyListFormat.openStep {
       try serializer.openStepSerialization.write(to: path, atomically: true, encoding: String.Encoding.utf8)
       return true
     }
     else {
       let data = try PropertyListSerialization.data(fromPropertyList: dict, format: plformat, options: 0)
-      try data.write(to: path, options: .dataWritingAtomic)
+      try data.write(to: path, options: .atomicWrite)
       return true
     }
   }
@@ -37,7 +37,7 @@ extension XCProjectFile {
 
     let serializer = Serializer(projectName: projectName, projectFile: self)
 
-    if format == PropertyListSerialization.PropertyListFormat.openStepFormat {
+    if format == PropertyListSerialization.PropertyListFormat.openStep {
       return serializer.openStepSerialization.data(using: String.Encoding.utf8)!
     }
     else {
@@ -76,7 +76,7 @@ internal class Serializer {
 
   lazy var buildPhaseByFileId: [String: PBXBuildPhase] = {
 
-    let buildPhases = self.projectFile.allObjects.dict.values.ofType(PBXBuildPhase)
+    let buildPhases = self.projectFile.allObjects.dict.values.ofType(PBXBuildPhase.self)
 
     var dict: [String: PBXBuildPhase] = [:]
     for buildPhase in buildPhases {

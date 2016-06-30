@@ -59,7 +59,7 @@ public class XCProjectFile {
   public convenience init(propertyListData data: Data) throws {
 
     let options = PropertyListSerialization.MutabilityOptions()
-    var format: PropertyListSerialization.PropertyListFormat = PropertyListSerialization.PropertyListFormat.binaryFormat_v1_0
+    var format: PropertyListSerialization.PropertyListFormat = PropertyListSerialization.PropertyListFormat.binary
     let obj = try PropertyListSerialization.propertyList(from: data, options: options, format: &format)
 
     guard let dict = obj as? JsonObject else {

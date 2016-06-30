@@ -164,7 +164,7 @@ public class PBXGroup : PBXReference {
 
   // convenience accessors
   public lazy var subGroups: [PBXGroup] = self.children.ofType(PBXGroup.self)
-  public lazy var fileRefs: [PBXFileReference] = self.children.ofType(PBXFileReference)
+  public lazy var fileRefs: [PBXFileReference] = self.children.ofType(PBXFileReference.self)
 }
 
 public class PBXVariantGroup : PBXGroup {
