@@ -124,8 +124,9 @@ public class XCBuildConfiguration : PBXBuildStyle {
 
 public /* abstract */ class PBXTarget : PBXProjectItem {
   public lazy var buildConfigurationList: XCConfigurationList = self.object("buildConfigurationList")
-  public lazy var name: String = self.string("name")!
-  public lazy var productName: String = self.string("productName")!
+    public lazy var name: String = self.string("name")!
+    public lazy var productName: String = self.string("productName")!
+    public lazy var productType: String = self.string("productType")!
   public lazy var buildPhases: [PBXBuildPhase] = self.objects("buildPhases")
 }
 
