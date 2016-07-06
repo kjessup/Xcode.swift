@@ -13,7 +13,7 @@ typealias JsonObject = [String: AnyObject]
 public /* abstract */ class PBXObject {
   let id: String
   let dict: JsonObject
-  let allObjects: AllObjects
+  public let allObjects: AllObjects
 
   public lazy var isa: String = self.string("isa")!
 

@@ -12,7 +12,7 @@ extension XCProjectFile {
 
   public func writeToXcodeproj(xcodeprojURL url: URL, format: PropertyListSerialization.PropertyListFormat? = nil) throws -> Bool {
 
-    try FileManager.default().createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+    try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
 
     let name = try XCProjectFile.projectName(url)
     guard let path = try? url.appendingPathComponent("project.pbxproj", isDirectory: false) else {
